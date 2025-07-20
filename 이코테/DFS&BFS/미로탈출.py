@@ -7,9 +7,8 @@ graph = []
 for i in range(n):
     graph.append(list(map(int, input())))
 
-# 이동할 방향
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
+# 이동할 방향을 튜플 리스트로 정의
+directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 def bfs(x, y):
     queue = deque()
@@ -17,9 +16,9 @@ def bfs(x, y):
 
     while queue: # 큐가 빌 때까지
         x, y = queue.popleft()
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
+        for dx, dy in directions:
+            nx = x + dx
+            ny = y + dy
             # 종료: 범위 벗어남
             if nx < 0 or ny < 0 or nx >= n or ny >= m:
                 continue
